@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useQuery} from "@apollo/client";
-import {GET_ALL_USERS, GET_USER} from "../../query/user.query";
+import {GET_ALL_USERS, GET_USER} from "../../../query/user.query";
 
 const Home = () => {
     const {data, loading, error, refetch} = useQuery(GET_USER)

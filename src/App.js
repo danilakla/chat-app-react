@@ -2,13 +2,16 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import SignIn from "./components/page/SignIn";
 import SignUp from "./components/page/SignUp";
 import PrivateRoutes from "./utils/PrivateRoutes";
-import Home from "./components/page/Home";
+import Home from "./components/page/Home/Home";
 import ListFriend from "./components/page/ListFriend";
 import Navbar from "./components/Navbar";
 import {observer} from "mobx-react-lite";
 import React from 'react';
 import GoogleLogin from "react-google-login";
 import ResetPassword from "./components/page/ResetPassword";
+import Deposits from "./components/page/Home/Deposits";
+import Profile from "./components/page/Home/Profile";
+import Dashboard from "./components/page/Home/Profile";
 
 function App() {
 
@@ -25,6 +28,7 @@ function App() {
 
                 </Route>
                 <Route path="/reset-password/:resetToken" element={<ResetPassword/>}/>
+                <Route element={<Dashboard/>} path="/profile"/>
 
                 <Route path="/" element={<SignIn/>}/>
                 <Route path="/up" element={<SignUp/>}/>
