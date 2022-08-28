@@ -2,7 +2,9 @@ import React from 'react'
 
 const ListFriend = () => {
     return (
-        <div>ListFriend</div>
+        <div>
+            <h1 style={{textAlign:"center", marginTop:100}}>1asdasdasdasdasa</h1>
+        </div>
     )
 }
 

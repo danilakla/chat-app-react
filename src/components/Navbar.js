@@ -4,8 +4,11 @@ import {Link, Outlet} from "react-router-dom";
 const Navbar = () => {
     return (
         <>
-            <Link to={'/home'}>HOME</Link>
+            <Link to={'/profile'}>HOME</Link>
             <Link to={'/products'}>Product</Link>
+            <Link to={'/'}>Product</Link>
+            <Link to={'/up'}>Product</Link>
+
             <Outlet/>
         </>
 )

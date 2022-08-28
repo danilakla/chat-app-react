@@ -37,7 +37,7 @@ const GoogleAuth = ({children,typeMutation,fun}) => {
             localStorage.setItem('access_token', data[fun].access_token)
             setQuery('success')
 
-            navigate('/home');
+            navigate('/profile');
 
 
         } catch (error) {

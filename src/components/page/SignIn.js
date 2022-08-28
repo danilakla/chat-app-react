@@ -57,7 +57,7 @@ export default function SignIn() {
             localStorage.setItem('access_token', res.data.login.access_token)
             setQuery('success')
 
-            navigate('/home');
+            navigate('/profile');
         }
         catch(e){
             console.log(e)
