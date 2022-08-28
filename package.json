@@ -23,6 +23,8 @@
     "react-google-login": "^5.2.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^2.1.3",
+    "react-swipeable-views": "^0.14.0",
+    "react-swipeable-views-utils": "^0.14.0",
     "recharts": "^2.1.13",
     "web-vitals": "^2.1.4"
   },

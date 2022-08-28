@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import {Outlet} from "react-router-dom";
+import BasicSwitches from "../../Logout";
 
 
 
@@ -110,6 +111,7 @@ function NaveBare() {
                         </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
+                                <BasicSwitches/>
                                 <NotificationsIcon />
                             </Badge>
                         </IconButton>
