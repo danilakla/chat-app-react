@@ -6,11 +6,12 @@ import Home from "./components/page/Home";
 import ListFriend from "./components/page/ListFriend";
 import Navbar from "./components/Navbar";
 import {observer} from "mobx-react-lite";
-import React   from 'react';
+import React from 'react';
 import GoogleLogin from "react-google-login";
 import ResetPassword from "./components/page/ResetPassword";
 
 function App() {
+
     return (
         <div className="App">
 

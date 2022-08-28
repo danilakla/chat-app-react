@@ -48,20 +48,19 @@ export default function SignIn() {
             event.preventDefault();
 
             const data = new FormData(event.currentTarget);
-            console.log(data.get('email'))
             const res = await login({
                 variables: {
                     email: data.get('email'),
                     password: data.get('password'),
                 }
             })
-
             localStorage.setItem('access_token', res.data.login.access_token)
             setQuery('success')
 
             navigate('/home');
         }
         catch(e){
+            console.log(e)
             setQuery('error')
         }
 

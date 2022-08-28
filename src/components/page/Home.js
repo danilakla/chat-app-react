@@ -7,11 +7,14 @@ const Home = () => {
     const [user, setUsers] = useState({})
 
     useEffect(() => {
+
         if (!loading) {
+            console.log(error)
             console.log(data.user.roles)
             setUsers(data.user)
         }
     }, [data])
+
     return (
         <div>
             <h1>Home</h1>
