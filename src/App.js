@@ -5,10 +5,16 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import Home from "./components/page/Home";
 import ListFriend from "./components/page/ListFriend";
 import Navbar from "./components/Navbar";
+import {observer} from "mobx-react-lite";
+import React   from 'react';
+import GoogleLogin from "react-google-login";
+import ResetPassword from "./components/page/ResetPassword";
 
 function App() {
     return (
         <div className="App">
+
+
             <Routes>
                 <Route element={<PrivateRoutes/>}>
                     <Route element={<Navbar/>}>
@@ -17,6 +23,8 @@ function App() {
                     </Route>
 
                 </Route>
+                <Route path="/reset-password/:resetToken" element={<ResetPassword/>}/>
+
                 <Route path="/" element={<SignIn/>}/>
                 <Route path="/up" element={<SignUp/>}/>
                 <Route
@@ -28,4 +36,4 @@ function App() {
     );
 }
 
-export default App;
+export default observer(App);

@@ -11,7 +11,16 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {useContext, useState} from "react";
+import {Context} from "../../index";
+import GoogleAuth from "../GoogleAuth";
+import {LOGIN, REGISTRATION, SINGUP_GOOGLE} from "../../mutation/auth.mutation";
+import {useMutation} from "@apollo/client";
+import {useNavigate} from 'react-router-dom'
+import FormDialog from "./ForgotPassword";
+import Error from "../alter/Error";
+import Success from "../alter/success";
 
 function Copyright(props) {
     return (
@@ -29,19 +38,37 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+    const [registration] = useMutation(REGISTRATION)
+    const [stateQuery, setQuery] = useState()
+
+    const navigate = useNavigate()
+    const {store} = useContext(Context)
+
+    const handleSubmit = async (event) => {
+        try {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            const res = await registration({
+                variables: {
+                    email: data.get('email'),
+                    password: data.get('password'),
+                }
+            })
+            console.log(res.data.registration.access_token)
+            localStorage.setItem('access_token', res.data.registration.access_token)
+            setQuery('success')
+
+            navigate('/home');
+        } catch (e) {
+            setQuery('error')
+        }
+
+    }
 
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <Box
                     sx={{
                         marginTop: 8,
@@ -50,13 +77,13 @@ export default function SignIn() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                        <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign Up
+                        Registration
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
                         <TextField
                             margin="normal"
                             required
@@ -78,32 +105,40 @@ export default function SignIn() {
                             autoComplete="current-password"
                         />
                         <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
+                            control={<Checkbox value="remember" color="primary"/>}
                             label="Remember me"
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
-                            Sign In
+                            Sign Up
                         </Button>
+                        {stateQuery==='error'?<Error/>:''}
+                        {stateQuery==='success'?<Success/>:''}
+                        <p style={{textAlign: "center"}}>or</p>
+                        <GoogleAuth fun={'registrationGoogle'} typeMutation={SINGUP_GOOGLE} children={'SignUp'}/>
+
                         <Grid container>
                             <Grid item xs>
-                                <Link href="client/src/components/page/SignUp#" variant="body2">
-                                    Forgot password?
-                                </Link>
+                                <FormDialog/>
                             </Grid>
-                            <Grid item>
-                                <Link href="/" >
-                                    {"Do have an account? Sign In"}
-                                </Link>
+                            <Grid item xs>
+
+                                <Button style={{fontSize: 15, marginTop: 30, margin: "auto"}}
+                                        variant="outlined">
+                                    <Link href="/">
+                                        {"Don't have an account? Sign Up"}
+                                    </Link> </Button>
+
+
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Copyright sx={{mt: 8, mb: 4}}/>
             </Container>
         </ThemeProvider>
     );
