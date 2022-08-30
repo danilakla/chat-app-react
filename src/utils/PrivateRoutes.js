@@ -26,7 +26,7 @@ const isAuthCheck=async ()=>{
         isAuthCheck().then()
 
     },[items] );
-    return(true ? <Outlet/> : <Navigate to="/"/>)
+    return(items ? <Outlet/> : <Navigate to="/"/>)
 }
 
 export default PrivateRoutes

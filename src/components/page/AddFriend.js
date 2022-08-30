@@ -16,6 +16,7 @@ import AddIcon from "@mui/icons-material/Add";
 import {styled} from "@mui/material/styles";
 import Fab from "@mui/material/Fab";
 import {Link, useNavigate} from "react-router-dom";
+
 const StyledFab = styled(Fab)({
     position: 'absolute',
     zIndex: 1,
@@ -24,7 +25,7 @@ const StyledFab = styled(Fab)({
     right: 0,
     margin: '0 auto',
 });
-export default function AddFriend({socket}) {
+export default function AddFriend(socket) {
     const navigate = useNavigate()
 
     const [open, setOpen] = React.useState(false);
@@ -39,30 +40,34 @@ export default function AddFriend({socket}) {
         setOpen(false);
     };
     const addFriend = async () => {
-        socket.emit(
+        socket.socket.current.emit(
             "add_friend",
             email,
-            ({ errorMsg, done, newFriend }) => {
-                if (done) {
-                    console.log(1)
-                    setQuery('success');
-
-                    return;
-                }
-                setQuery('error');
-            }
         )
+        socket.socket.current.on('isAdded',(isAdded)=>{
+            if (isAdded){
+                setQuery('success')
+                setTimeout(()=>{
+                    window.location.reload(false);
+                },500)
+            }else {
+                setQuery('error')
+
+            }
+
+        })
+
     }
     return (
         <div style={{display: "inline-block"}}>
-            <StyledFab   color="secondary" aria-label="add">
+            <StyledFab color="secondary" aria-label="add">
                 <AddIcon onClick={handleClickOpen}/>
             </StyledFab>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Subscribe</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                       input email your friend
+                        input email your friend
                     </DialogContentText>
                     <TextField
                         autoFocus
@@ -84,8 +89,8 @@ export default function AddFriend({socket}) {
                     <Button onClick={handleClose}>Cancel</Button>
                     <Button onClick={addFriend}>Subscribe</Button>
                 </DialogActions>
-                {stateQuery==='error'?<Error/>:''}
-                {stateQuery==='success'?<Success/>:''}
+                {stateQuery === 'error' ? <Error/> : ''}
+                {stateQuery === 'success' ? <Success/> : ''}
 
             </Dialog>
         </div>

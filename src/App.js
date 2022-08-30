@@ -17,10 +17,12 @@ import ChatBox, {ChatRoom} from "./components/page/Chat-room/Chat-room";
 import Chat from "./components/page/Chat-room/Chat-room";
 
 function App() {
-
+    function showConfirm(){
+        console.log('dasdas')
+        setTimeout(()=>'3',10000)
+    }
     return (
         <div className="App">
-
 
             <Routes>
                 <Route element={<PrivateRoutes/>}>
