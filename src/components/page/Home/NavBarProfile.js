@@ -20,6 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import {Outlet} from "react-router-dom";
 import BasicSwitches from "../../Logout";
+import {useEffect, useRef} from "react";
 
 
 
@@ -72,11 +73,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function NaveBare() {
+    const TEST=useRef()
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
     };
 
+useEffect(()=>{},[])
     return (
         <>
         <ThemeProvider theme={mdTheme}>
@@ -137,7 +140,7 @@ function NaveBare() {
                         {secondaryListItems}
                     </List>
                 </Drawer>
-                <Outlet/>
+                <Outlet />
 
             </Box>
 

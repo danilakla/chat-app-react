@@ -2,6 +2,7 @@ import React from "react";
 // import ChatFeed from "react-chat-ui";/
 import {ChatFeed, ChatBubble, BubbleGroup, Message} from "react-chat-ui";
 import "./styles.css";
+import {useEffect} from 'react'
 
 const styles = {
     button: {
@@ -27,38 +28,32 @@ const styles = {
 };
 
 const users = {
-    0: "You",
-    Mark: "Mark",
+    you: 0,
+    friend: 1,
 };
 
-const customBubble = props => (
-    <div>
-        <p>{`${props.message.senderName} ${props.message.id ? "says" : "said"}: ${
-            props.message.message
-        }`}</p>
-    </div>
-);
 
 class Chat extends React.Component {
+
     constructor() {
         super();
         this.state = {
             messages: [],
-            useCustomBubble: false,
-            curr_user: 0
+            curr_user: users.you
         };
     }
 
-    onPress(user) {
-        this.setState({curr_user: user});
-    }
+
 
     onMessageSubmit(e) {
         const input = this.message;
         e.preventDefault();
         if (!input.value) {
+            console.log('one side')
             return false;
         }
+        console.log('other side')
+
         this.pushMessage(this.state.curr_user, input.value);
         input.value = "";
         return true;
@@ -80,7 +75,7 @@ class Chat extends React.Component {
             <div className="container">
                 <div className="chatfeed-wrapper">
                     <ChatFeed
-                        chatBubble={this.state.useCustomBubble && customBubble}
+                        chatBubble={this.state.useCustomBubble}
                         maxHeight={250}
                         messages={this.state.messages} // Boolean: list of message objects
                         showSenderName
@@ -96,26 +91,7 @@ class Chat extends React.Component {
                         />
                     </form>
 
-                    <div style={{display: "flex", justifyContent: "space-around"}}>
-                        <button
-                            style={{
-                                ...styles.button,
-                                ...(this.state.curr_user === 0 ? styles.selected : {})
-                            }}
-                            onClick={() => this.onPress(0)}
-                        >
-                            You
-                        </button>
-                        <button
-                            style={{
-                                ...styles.button,
-                                ...(this.state.curr_user === "Mark" ? styles.selected : {})
-                            }}
-                            onClick={() => this.onPress("Mark")}
-                        >
-                            Mark
-                        </button>
-                    </div>
+
                     <div
                         style={{display: "flex", justifyContent: "center", marginTop: 10}}
                     >

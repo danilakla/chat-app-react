@@ -3,7 +3,6 @@ import SignIn from "./components/page/SignIn";
 import SignUp from "./components/page/SignUp";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import ListFriend from "./components/page/ListFriend";
-import Navbar from "./components/Navbar";
 import {observer} from "mobx-react-lite";
 import React from 'react';
 import GoogleLogin from "react-google-login";
@@ -13,8 +12,9 @@ import Profile from "./components/page/Home/Profile";
 import Dashboard from "./components/page/Home/Profile";
 import NaveBare from "./components/page/Home/NavBarProfile";
 import NaveBar from "./components/page/Home/NavBarProfile";
-import ChatBox, {ChatRoom} from "./components/page/Chat-room/Chat-room";
+import  {ChatRoom} from "./components/page/Chat-room/Chat-room";
 import Chat from "./components/page/Chat-room/Chat-room";
+import ChatBox from "./components/page/Chat-room/Chat-Box";
 
 function App() {
     function showConfirm(){
@@ -30,7 +30,7 @@ function App() {
 
                         <Route element={<ListFriend/>} path="products"/>
                         <Route element={<Dashboard/>} path="profile"/>
-                            <Route element={<Chat/>} path="chat-room/:socketId"/>
+                            <Route element={<ChatBox/>} path="chat-room/:socketId"/>
 
                     </Route>
 

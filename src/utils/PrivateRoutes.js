@@ -8,10 +8,7 @@ import {IS_Auth} from "../mutation/is-auth.mutation";
 const PrivateRoutes = () => {
     const [items, setItems] = useState([]);
     const [isAuth] = useMutation(IS_Auth)
-const isAuthCheck=async ()=>{
-    const res = await isAuth()
-    console.log(res)
-}
+
     useEffect( () => {
         async function isAuthCheck(){
             try {

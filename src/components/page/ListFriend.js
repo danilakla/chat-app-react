@@ -26,7 +26,6 @@ import AddFriend from "./AddFriend";
 export default function ListFriend() {
     const [friends, setFriend] = useState([{}])
     let newArray;
-
     const socketConnection = useRef();
     useEffect(() => {
         const token = localStorage.getItem('access_token')
