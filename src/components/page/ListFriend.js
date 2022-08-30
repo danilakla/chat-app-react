@@ -42,6 +42,8 @@ export default function ListFriend() {
         })
 
         socketConnection.current.on('disconnect_caller', ({isConnected, email}) => {
+            console.log('oppp')
+
             setFriend(friends.map((fr) => {
                 if (fr.email === email) {
                     fr.connected = isConnected
