@@ -17,40 +17,43 @@ const ChatBox = () => {
 
         socketConnection.current.emit('init-message', friendId)
 
-        socketConnection.current.on('messages',async (messagesFormServer) => {
+        socketConnection.current.on('messages', (messagesFormServer) => {
+            console.log(messagesFormServer)
+            if (messagesFormServer) {
+                const messagesFromRedis = messagesFormServer.reverse().map((mess) => {
+                    let senderId = 0;
+                    if (mess.from === friendId) {
+                        console.log('other side')
+                        senderId = 1
+                    }
+                    return new Message({
+                        id: senderId,
+                        message: mess.message,
+                        senderName: senderId ? 'Friend' : 'You'
+                    });
 
-           const messagesFromRedis= messagesFormServer.reverse().map( (mess) => {
-                let senderId = 0;
-                if (mess.from === friendId) {
-                    console.log('other side')
-                    senderId = 1
-                }
-               return  new Message({
-                    id:senderId,
-                    message:mess.message,
-                    senderName: senderId ? 'Friend' : 'You'
-                });
+                })
 
-            })
-
-            setMessages([...messagesFromRedis])
+                setMessages([...messagesFromRedis])
+            }
 
 
         })
 
     }, [])
-useEffect(()=>{
-    socketConnection.current.on('take-message',(messageFromServer)=>{
-        let senderId = 0;
-        if (messageFromServer.from == friendId) {
-            senderId = 1
-        }
-        console.log(messageFromServer)
-        pushMessage(messageFromServer.message,senderId)
+    useEffect(() => {
+        socketConnection.current.on('take-message', (messageFromServer) => {
+            let senderId = 0;
+            if (messageFromServer.from == friendId) {
+                senderId = 1
+            }
+            console.log(messageFromServer)
+            pushMessage(messageFromServer.message, senderId)
 
-    })
+        })
 
-    },[messages])
+    }, [messages])
+
     function onMessageSubmit(e) {
 
         const input = message;
@@ -75,7 +78,7 @@ useEffect(()=>{
         });
         console.log(newMessage)
         console.log(newMessage)
-            setMessages([...messages,newMessage])
+        setMessages([...messages, newMessage])
 
 
     }
