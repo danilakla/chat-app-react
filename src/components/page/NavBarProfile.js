@@ -17,13 +17,13 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, secondaryListItems } from './Home/listItems';
 import {Outlet} from "react-router-dom";
-import BasicSwitches from "../../Logout";
+import BasicSwitches from "../Logout";
 import {useEffect, useRef, useState} from "react";
 import {useMutation} from "@apollo/client";
-import {IS_Auth} from "../../../mutation/is-auth.mutation";
-import {LOGOUT} from "../../../mutation/auth.mutation";
+import {IS_Auth} from "../../mutation/is-auth.mutation";
+import {LOGOUT} from "../../mutation/auth.mutation";
 
 
 
