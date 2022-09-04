@@ -26,7 +26,7 @@ export default function FormDialog() {
     const handleClose = () => {
         setOpen(false);
     };
-    const updata = async () => {
+    const update = async () => {
         try {
             const data = await sendEmail({
                 variables: {
@@ -75,7 +75,7 @@ export default function FormDialog() {
                 <DialogActions>
 
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={updata}>Subscribe</Button>
+                    <Button onClick={update}>Subscribe</Button>
                 </DialogActions>
                 {stateQuery==='error'?<Error/>:''}
                 {stateQuery==='success'?<Success/>:''}

@@ -12,6 +12,7 @@ const GoogleAuth = ({children,typeMutation,fun}) => {
 
     const navigate=useNavigate()
     useEffect(() => {
+
         function start() {
             gapi.client.init({
                 clientId: '515288434314-4c86djpslburbt8tagraale5tkg05h9q.apps.googleusercontent.com',
