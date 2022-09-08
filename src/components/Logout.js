@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Switch from '@mui/material/Switch';
 import {LOGOUT} from "../mutation/auth.mutation";
-import {useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {useNavigate} from "react-router-dom";
 
@@ -15,7 +14,6 @@ const navigate=useNavigate()
     async function isAuthCheck(){
         try {
             const res = await logout()
-            console.log(res)
             if (res){
                 localStorage.removeItem('access_token')
                 setTimeout(()=>{

@@ -6,10 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {useMutation} from "@apollo/client";
-import {FORGOT_PASSWORD} from "../../../mutation/forgotPassword.mutation";
-import {PROFILE_CREATE, UPDATE_PROFILE, UPDATE_RPOFILE} from "../../../mutation/profile";
+import { UPDATE_PROFILE} from "../../../mutation/profile";
 
 export default function UpdateProfileForm({userData}) {
     const [open, setOpen] = React.useState(false);
@@ -39,12 +38,9 @@ export default function UpdateProfileForm({userData}) {
                 }
             })
             if (!data) {
-                console.log('null data')
             }
 
-            console.log(data)
         } catch (e) {
-            console.log(e)
         }
 
     }

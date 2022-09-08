@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {styled} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,19 +6,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
-import Fab from '@mui/material/Fab';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
 import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
-import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import {Link} from "react-router-dom";
-import {createContext, useContext, useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState} from "react";
 import socket from "../../socket/socket.io";
 import AddFriend from "./AddFriend";
 
@@ -33,7 +29,6 @@ export default function ListFriend() {
         socketConnection.current.emit('init-user')
         socketConnection.current.on('3', (listFriends) => {
 
-            console.log('312312')
         })
         socketConnection.current.on('friends', (listFriends) => {
 
@@ -41,7 +36,6 @@ export default function ListFriend() {
         })
 
         socketConnection.current.on('disconnect_caller', ({isConnected, email}) => {
-            console.log('oppp')
 
             setFriend(friends.map((fr) => {
                 if (fr.email === email) {
@@ -101,6 +95,8 @@ export default function ListFriend() {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
+
         </React.Fragment>
 );
+
 }

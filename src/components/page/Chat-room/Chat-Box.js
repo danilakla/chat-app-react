@@ -18,12 +18,10 @@ const ChatBox = () => {
         socketConnection.current.emit('init-message', friendId)
 
         socketConnection.current.on('messages', (messagesFormServer) => {
-            console.log(messagesFormServer)
             if (messagesFormServer) {
                 const messagesFromRedis = messagesFormServer.reverse().map((mess) => {
                     let senderId = 0;
                     if (mess.from === friendId) {
-                        console.log('other side')
                         senderId = 1
                     }
                     return new Message({
@@ -47,7 +45,7 @@ const ChatBox = () => {
             if (messageFromServer.from == friendId) {
                 senderId = 1
             }
-            console.log(messageFromServer)
+
             pushMessage(messageFromServer.message, senderId)
 
         })
@@ -60,7 +58,7 @@ const ChatBox = () => {
         e.preventDefault();
 
         if (!input.value) {
-            console.log('one side')
+
             return false;
         }
         socketConnection.current.emit('create-message', {from: null, to: friendId, message: input.value})
@@ -76,8 +74,6 @@ const ChatBox = () => {
             message,
             senderName: id ? 'Friend' : 'You' //STATE
         });
-        console.log(newMessage)
-        console.log(newMessage)
         setMessages([...messages, newMessage])
 
 

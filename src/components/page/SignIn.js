@@ -16,7 +16,7 @@ import {useContext, useState} from "react";
 import {Context} from "../../index";
 import {useNavigate} from "react-router-dom";
 import GoogleAuth from "../GoogleAuth";
-import {LOGIN, LOGIN_GOOGLE, REGISTRATION, SINGUP_GOOGLE} from "../../mutation/auth.mutation";
+import {LOGIN, LOGIN_GOOGLE} from "../../mutation/auth.mutation";
 import {useMutation} from "@apollo/client";
 import FormDialog from "./ForgotPassword";
 import Error from "../alter/Error";
@@ -48,7 +48,6 @@ export default function SignIn() {
             navigate('/profile');
         }
         catch(e){
-            console.log(e)
             setQuery('error')
         }
 

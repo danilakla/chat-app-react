@@ -29,7 +29,6 @@ export default function CreateProfileForm() {
 
     const create = async () => {
         try {
-            console.log(name,lastName,img)
 
             const data = await createProfile({
                 variables: {
@@ -39,12 +38,9 @@ export default function CreateProfileForm() {
                 }
             })
             if (!data) {
-                console.log('null data')
             }
 
-            console.log(data)
         } catch (e) {
-            console.log(e)
         }
 
     }

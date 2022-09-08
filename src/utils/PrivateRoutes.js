@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import {useContext, useEffect, useState} from "react";
-import {Context} from "../index";
+import { useEffect, useState} from "react";
+
 import React   from 'react';
 import {useMutation} from "@apollo/client";
 import {IS_Auth} from "../mutation/is-auth.mutation";

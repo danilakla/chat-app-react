@@ -8,7 +8,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useState} from "react";
 import {useMutation} from "@apollo/client";
-import {LOGIN} from "../../mutation/auth.mutation";
 import {FORGOT_PASSWORD} from "../../mutation/forgotPassword.mutation";
 import Error from "../alter/Error";
 import Success from "../alter/success";
@@ -38,7 +37,6 @@ export default function FormDialog() {
             }
             setQuery('success')
 
-            console.log(data)
         } catch (e) {
             setQuery(`error`)
 

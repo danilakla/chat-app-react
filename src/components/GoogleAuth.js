@@ -34,7 +34,6 @@ const GoogleAuth = ({children,typeMutation,fun}) => {
                   token:accessToken
                 }
             })
-            console.log(data[fun].access_token)
             localStorage.setItem('access_token', data[fun].access_token)
             setQuery('success')
 
@@ -44,7 +43,6 @@ const GoogleAuth = ({children,typeMutation,fun}) => {
         } catch (error) {
             setQuery(`error`)
 
-            console.log(error)
         }
 
     }

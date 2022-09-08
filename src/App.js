@@ -5,32 +5,26 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import ListFriend from "./components/page/ListFriend";
 import {observer} from "mobx-react-lite";
 import React from 'react';
-import GoogleLogin from "react-google-login";
 import ResetPassword from "./components/page/ResetPassword";
-import Deposits from "./components/page/Home/Deposits";
-import Profile from "./components/page/Home/Profile";
+
 import Dashboard from "./components/page/Home/Profile";
 import NaveBare from "./components/page/NavBarProfile";
-import NaveBar from "./components/page/NavBarProfile";
-import  {ChatRoom} from "./components/page/Chat-room/Chat-room";
-import Chat from "./components/page/Chat-room/Chat-room";
+
 import ChatBox from "./components/page/Chat-room/Chat-Box";
 
 function App() {
-    function showConfirm(){
-        console.log('dasdas')
-        setTimeout(()=>'3',10000)
-    }
+
+
     return (
         <div className="App">
 
             <Routes>
                 <Route element={<PrivateRoutes/>}>
-                        <Route element={<NaveBare/>}>
+                    <Route element={<NaveBare/>}>
 
                         <Route element={<ListFriend/>} path="products"/>
                         <Route element={<Dashboard/>} path="profile"/>
-                            <Route element={<ChatBox/>} path="chat-room/:socketId"/>
+                        <Route element={<ChatBox/>} path="chat-room/:socketId"/>
 
                     </Route>
 

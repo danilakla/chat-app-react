@@ -1,8 +1,6 @@
 import React from "react";
-// import ChatFeed from "react-chat-ui";/
-import {ChatFeed, ChatBubble, BubbleGroup, Message} from "react-chat-ui";
+import {ChatFeed, Message} from "react-chat-ui";
 import "./styles.css";
-import {useEffect} from 'react'
 
 const styles = {
     button: {
@@ -49,10 +47,8 @@ class Chat extends React.Component {
         const input = this.message;
         e.preventDefault();
         if (!input.value) {
-            console.log('one side')
             return false;
         }
-        console.log('other side')
 
         this.pushMessage(this.state.curr_user, input.value);
         input.value = "";

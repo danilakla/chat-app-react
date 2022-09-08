@@ -15,7 +15,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useContext, useState} from "react";
 import {Context} from "../../index";
 import GoogleAuth from "../GoogleAuth";
-import {LOGIN, REGISTRATION, SINGUP_GOOGLE} from "../../mutation/auth.mutation";
+import { REGISTRATION, SINGUP_GOOGLE} from "../../mutation/auth.mutation";
 import {useMutation} from "@apollo/client";
 import {useNavigate} from 'react-router-dom'
 import FormDialog from "./ForgotPassword";
@@ -43,7 +43,6 @@ export default function SignIn() {
                     password: data.get('password'),
                 }
             })
-            console.log(res.data.registration.access_token)
             localStorage.setItem('access_token', res.data.registration.access_token)
             setQuery('success')
 
