@@ -19,14 +19,14 @@ export const mainListItems = (
             <ListItemIcon>
                 <DashboardIcon/>
             </ListItemIcon>
-            <ListItemText primary="Dashboard"/>
+            <ListItemText primary="Home"/>
         </ListItemButton></Link>
 
         <Link to={'/products'}> <ListItemButton>
             <ListItemIcon>
                 <ShoppingCartIcon/>
             </ListItemIcon>
-            <ListItemText primary="Orders"/>
+            <ListItemText primary="List of friends"/>
         </ListItemButton></Link>
 
 
@@ -52,14 +52,14 @@ export const secondaryListItems = (
             <ListItemIcon>
                 <PeopleIcon/>
             </ListItemIcon>
-            <ListItemText primary="Customers"/>
+            <ListItemText primary="Login"/>
         </ListItemButton></Link>
 
         <Link to={'/up'}> <ListItemButton>
             <ListItemIcon>
                 <BarChartIcon/>
             </ListItemIcon>
-            <ListItemText primary="Reports"/>
+            <ListItemText primary="Registration"/>
         </ListItemButton>
         </Link>
     </React.Fragment>

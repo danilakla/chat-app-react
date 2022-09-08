@@ -28,18 +28,6 @@ import {useEffect, useState} from "react";
 import {useQuery} from "@apollo/client";
 import {GET_PROFILE} from "../../../query/profile";
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 
 function DashboardContent() {
@@ -49,6 +37,7 @@ function DashboardContent() {
     const [lastname, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [isActive, setIsActive] = useState('')
+    const [isCreateProfile, setIsCreateProfile] = useState(false)
 
     const [img, setImage] = useState('')
     const toggleDrawer = () => {
@@ -65,6 +54,7 @@ function DashboardContent() {
             setIsActive(profile.user.isActive)
 
             setLastName(profile.lastname)
+            setIsCreateProfile(true)
         }
     },[data])
 
@@ -106,14 +96,14 @@ function DashboardContent() {
                         <Grid item xs={12} md={4} lg={3}>
                             <img width={300} height={300}
                                  src={img}/>
-                                <CreateProfileForm/>
-                                <UpdateProfileForm userData={{name,lastname,img}}/>
+                            {!isCreateProfile?<CreateProfileForm/>:<UpdateProfileForm userData={{name,lastname,img}}/>}
+
+
 
                         </Grid>
                         {/* Recent Orders */}
                         <SwipeableTextMobileStepper/>
                     </Grid>
-                    <Copyright sx={{pt: 4}}/>
                 </Container>
             </Box>
         </>
