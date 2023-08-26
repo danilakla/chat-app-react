@@ -15,7 +15,7 @@ const GoogleAuth = ({children,typeMutation,fun}) => {
 
         function start() {
             gapi.client.init({
-                clientId: '515288434314-4c86djpslburbt8tagraale5tkg05h9q.apps.googleusercontent.com',
+                clientId: '77144797068-s64eirkru9foga32she7mnlettoi7361.apps.googleusercontent.com',
                 scope: 'email',
             });
         }
@@ -52,7 +52,7 @@ const GoogleAuth = ({children,typeMutation,fun}) => {
     return (
         <div style={{ margin: "auto", marginBottom: 20}}>
             <GoogleLogin
-                clientId="515288434314-4c86djpslburbt8tagraale5tkg05h9q.apps.googleusercontent.com"
+                clientId="77144797068-s64eirkru9foga32she7mnlettoi7361.apps.googleusercontent.com"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
             >{children}</GoogleLogin>
